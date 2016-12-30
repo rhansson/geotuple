@@ -25,10 +25,10 @@ api_getpoint | longitude, latitude, theme1 .. n, API_KEY | Data values* for the 
 
 1. Launch the [GeoTuple app](http://geotuple.com){:target="_blank"}
 2. Select "Get an API Key" from the menu in the top right of the window
-  ![](/pages/get_api_key.png)
+  ![](get_api_key.png)
 
 3. Copy the code displayed at the top left of the window (valid for a maximum of 24h)
-  ![](/pages/copy_api_key.png)
+  ![](copy_api_key.png)
 
 > _**Please limit your requests to < 3/min**_
 
