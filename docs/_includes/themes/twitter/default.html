@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{{ page.title }}</title>
+    {% if page.description %}<meta name="description" content="{{ page.description }}">{% endif %}
+    <meta name="author" content="{{ site.author.name }}">
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="{{ ASSET_PATH }}/bootstrap/css/bootstrap.2.2.2.min.css" rel="stylesheet">
+    <link href="{{ ASSET_PATH }}/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+    <link href="{{ ASSET_PATH }}/css/kbroman.css" rel="stylesheet" type="text/css" media="all">
+
+    <!-- Le fav and touch icons -->
+
+    <!-- atom & rss feed -->
+    <link href="{{ BASE_PATH }}{{ site.JB.atom_path }}" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="{{ BASE_PATH }}{{ site.JB.rss_path }}" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+
+  </head>
+
+  <body>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <img class="gt_logo" src="{{ ASSET_PATH }}/bootstrap/img/pcM_globe48.png" alt="Logo" width="48" height="48">
+        <div class="container-narrow">
+          <a class="brand" href="{{ HOME_PATH }}">{{ site.title }}</a>
+          <a class="gt_navbar" href="{{ BASE_PATH }}/pages/app.html">App</a>
+          <a class="gt_navbar" href="{{ BASE_PATH }}/pages/database.html">Database</a>
+          <a class="gt_navbar" href="{{ BASE_PATH }}/pages/api.html">API</a>
+        </div>
+        <a class="gt_linkright" href="https://github.com/rhansson/geotuple" target="_blank">GitHub</a>
+      </div>
+    </div>
+
+    <div class="sidebox">
+      <a class="gt_navbar" href="{{ BASE_PATH }}/pages/blog.html">Blog</a>
+    </div>
+
+    <div class="container-narrow">
+      <div class="content">
+        {{ content }}
+      </div>
+      <hr>
+      <footer>
+        <p><small>
+  <!-- start of footer; modify this part -->
+          Copyright (c) 2016 Roland Hansson - Nova Spatial LLC. | info@geotuple dot org
+          | <a href="https://twitter.com/geotuple" target="_blank">Twitter: @geotuple</a>
+          | <a href="https://groups.google.com/forum/#!forum/geotuple" target="_blank">Google Groups</a>
+  <!-- end of Karl's footer; modify this part -->
+        </small></p>
+      </footer>
+
+    </div>
+
+    {% include JB/analytics %}
+  </body>
+</html>

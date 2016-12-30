@@ -1,0 +1,8 @@
+---
+layout: page
+title: My blog archive
+---
+
+{% for post in site.posts %}
+  <h4 class="text-justify"><span class='muted'>{{ post.date | date: "%B %e, %Y" }}</span> | <a class='text-default' href="{{ post.url }}">{{ post.title }}</a></h4>
+{% endfor %}
