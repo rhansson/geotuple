@@ -18,7 +18,7 @@ author :
   baseurl: /docs
   url: localhost:4000
 
-production_url : https://rhansson.github.io/testgt1/
+production_url : https://rhansson.github.io/geotuple/
 
 # Tell Github to use the kramdown markdown interpreter
 # (see https://help.github.com/articles/migrating-your-pages-site-from-maruku)
@@ -51,7 +51,7 @@ JB :
   #   - Only the following values are falsy: ["", null, false]
   #   - When setting BASE_PATH it must be a valid url.
   #     This means always setting the protocol (http|https) or prefixing with "/"
-  BASE_PATH : http://rhansson.github.io/testgt1/
+  BASE_PATH : http://rhansson.github.io/geotuple/
 
   # By default, the asset_path is automatically defined relative to BASE_PATH plus the enabled theme.
   # ex: [BASE_PATH]/assets/themes/[THEME-NAME]
