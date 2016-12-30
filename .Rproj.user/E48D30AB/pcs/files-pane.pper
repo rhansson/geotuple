@@ -1,0 +1,9 @@
+{
+    "path" : "~/NovaSp/GeoTuple/geotuple2x",
+    "sortOrder" : [
+        {
+            "ascending" : true,
+            "columnIndex" : 2
+        }
+    ]
+}

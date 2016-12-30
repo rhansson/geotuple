@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<!-- Copyright (c) 2015 Roland Hansson - Nova Spatial LLC. -->
+<!-- This file is part of GeoTuple under the terms of the GNU General Public License. See LICENSE.txt. -->
+<html lang="en">
+  <head>
+    <meta name="robots" content="noindex">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="GeoTuple - Geospatial Analytics">
+    <meta name="viewport" content="width=device-width, initial-scale=1">  <!-- Mobile Specific -->
+    <title>GeoTuple</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="stylesheets/normalize.css">
+    <link rel="stylesheet" href="stylesheets/skeleton.css">
+    <link rel="stylesheet" href="stylesheets/geotuple.css" type="text/css" media="screen" />
+    <link rel="icon" href="data:;base64,iVBORwOKGO=" />  <!-- avoid 404 err in chrome -->
+    <!-- Include order: first jquery, then opencpu.js, and then your code -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="scripts/opencpu-0.5.js"></script>
+    <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="//d3js.org/colorbrewer.v1.min.js"></script>
+    <script src='https://api.tiles.mapbox.com/mapbox.js/v2.3.0/mapbox.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox.js/v2.3.0/mapbox.css' rel='stylesheet' />
+  </head>
+  <body>
+    <div class="container">
+    <div class="top row">
+      <div id="header" class="twelve columns" >
+        <header>
+          <div class="one column" >
+            <img id="logo1" src="stylesheets/globe48.png"/>
+          </div>
+          <div id="msgbox" class="nine columns" >
+            <span id="msg">:</span>
+          </div>
+          <div class="two columns">
+            <div class="dropdown">
+              <button id="menu-btn" class="dropbtn"></button>
+              <div id="menu-itm" class="dropdown-content">
+                <a href="#">Bookmarks &gt;</a>
+                  <a id="bookm-ba" href="#">- Bay Area</a>
+                  <a id="bookm-la" href="#">- Los Angeles</a>
+                  <a id="bookm-bh" href="#">- Beverly Hills</a>
+                <a id="report" href="https://www.google.com/fusiontables/DataSource?docid=1AWWDkeDPbw0_P15zjDIeWyr_ll-wdPyfu71IYfG8" target="_blank">Report an Issue...</a>
+                <a id="apikey" href="#">Get an API Key</a>
+              </div>
+            </div>
+          </div>
+        </header>
+
+    </div>
+    <div class="center row">
+      <div class="five columns" >
+        <div id="tools" class="top row">
+          <nav id="navlist">
+            <a class="nav" href="#1">Map</a> |
+            <a class="nav" href="#">Analyze</a> |
+            <a class="nav" href="#">Highlight</a>
+          </nav>
+          <div>
+          <button id="compute-btn" class="button-primary" type="button">Compute</button>
+          <select id="tool-opt1">
+            <option value="val">Value</option>
+            <option value="hot">Hot-Spot</option>
+          </select>
+          <div id="plot-chk-div" title="Draws a plot">
+            <label> <input id="plot-chk" type="checkbox"> Plot</label>
+          </div>
+          </div>
+          <div id="results-div" class="bottom row">
+            <label id="sethlite-opt-lab" for="sethlite-opt"></label>
+            <button id="themeinfo-btn" title="Get more info about this theme" type="button"></button>
+            <span id="info"></span>
+            <select id="sethlite-opt">
+              <option value=">"> &gt; </option>
+              <option value="=="> = </option>
+              <option value="<"> &lt; </option>
+            </select>
+            <button id="sethlite-btn" title="Set highlight criteria" type="button"></button>
+            <div id="compute-div" >
+              <label id="compute_output1" for="compute-slider" title="Correlation coefficient (r)">=</label>
+              <input id="compute-slider" name="compute-slider" type="range" min="0" max="100" step="1" value="0"</input>
+              <label id="compute-slider-label" for="compute-slider">Strong</label>
+              <button id="computeinfo-btn" title="Get more info about the analysis results" type="button"></button>
+            </div>
+          </div>
+          <div id="plot"></div>
+          <table id="themes">
+            <tr>
+              <th>key</th>
+              <th title="Select a theme to draw on map">Draw</th>
+              <th title="Select a dependent (response) variable"> Y </th>
+              <th title="Select independent (predictor/explanatory) variables"> X </th>
+              <th title="Select themes to highlight on map">Draw</th>
+              <th title="Set criteria for theme highlight">Edit</th>
+              <th title="Data variable">Theme</th>
+            </tr>
+            <!--
+            <tr>
+              <td>z</td>
+              <td><input type="checkbox"></td>
+              <td><input type="radio" name="radio1"></td>
+              <td>Elevation</td>
+            </tr>
+            -->
+          </table>
+          <button id="more" type="button" align="center">More...</button>
+        </div>
+
+        </div>
+        <div class="seven columns" >
+          <div class="top row">
+            <div id="legend" class="ten columns" >
+            </div>
+            <div id="domain-div" class="two columns" >
+              <label for="legend-domain" title="Adjusts the range of the legend">Domain:</label>
+              <select id="legend-domain">
+                <option value="map">Current area</option>
+                <option value="default">California</option>
+              </select>
+            </div>
+          </div>
+          <div class="bottom row">
+            <div id="map">
+              <!-- http://preloaders.net/en/circular/2/ -->
+              <div class="spinner_map" style="display: none">
+                <div class="spinner_map-center">
+                    <img alt="" src="stylesheets/Sun.gif" />
+                </div>
+              </div>
+            </div>
+            <div id="refresh-div" title="Loads new data when map is zoomed">
+              <label> <input id="refresh" type="checkbox"> Refresh </label>
+            </div>
+            <span id="mapmsg" class="procmsg">x</span>
+            <a href='#' id='download' title="Download current map as GeoJSON (Command+S in Safari)">Download Data</a>
+          </div>
+        </div>
+      </div>
+      <div class="bottom row">
+        <div class="twelwe columns" >
+          <div id="footer">
+            <div id="foot_left">
+              <a href="about.html" target="_blank">About&nbsp;</a> |&nbsp;
+        <!--  <a href="faq.html" target="_blank">FAQ&nbsp;</a> |&nbsp;
+        !-->
+          	 <a href="help.html" target="_blank">Help&nbsp;</a>  |&nbsp;
+          	 <a href="privacy.html" target="_blank">Privacy Policy&nbsp;</a>  |&nbsp;
+          	 <a href="terms.html" target="_blank">Terms of Use&nbsp;</a>
+            </div>
+            <div id="foot_right">
+              <p id="copyright"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- https://codyhouse.co/gem/css-slide-in-panel/
+         ******************************************* -->
+    <div class="cd-panel from-right">
+    <header id="themeinfo-header" class="cd-panel-header">
+      <h5>Title Goes Here</h5>
+      <a href="#0" class="cd-panel-close">Close</a>
+    </header>
+    <div class="cd-panel-container">
+      <div id="themeinfo" class="cd-panel-content">
+        <p>Content goes here</p>
+      </div>
+    </div>
+
+    <noscript>
+        <p>Javascript must be enabled!</p>
+    </noscript>
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-78419194-1', 'auto');ga('send', 'pageview');
+    </script>
+    <script type="text/javascript"> $('#copyright').load("copyright.html")</script>
+    <script type="text/javascript" src="scripts/geotuple.js"></script>
+  </body>
+</html>

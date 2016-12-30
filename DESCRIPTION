@@ -1,0 +1,16 @@
+Package: geotuple
+Type: Package
+Title: Provides Exploratory Geospatial Data Analysis Tools
+Version: 0.1.0
+Authors@R: person("Roland", "Hansson", email = "rolandhhansson@gmail.com",
+  role = c("aut", "cre"))
+Description: A web app, built on the OpenCPU framework, to visualize and perform geospatial analysis on point
+  data (gridded), thematically organized in a PostGIS (PostgreSQL) database at multiple resolutions (map scales).
+Depends: R (>= 3.2.4)
+License: GPL-3
+Imports:
+  opencpu,
+  RPostgreSQL
+Suggests: spdep
+LazyData: TRUE
+URL: http://www.geotuple.org
