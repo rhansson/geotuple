@@ -5,5 +5,5 @@ Built on the [OpenCPU system](https://www.opencpu.org), to visualize and perform
 
 For more info:
 
-- [geotuple.org](https://rhansson.github.io/geotuple/)
+- [geotuple.org](http://rhansson.github.io/geotuple/)
 - [Google Group](https://groups.google.com/forum/#!forum/geotuple)
