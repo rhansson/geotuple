@@ -2,3 +2,4 @@
 /docs/_site
 /docs/Gemfile.lock
 
+.Rproj.user
