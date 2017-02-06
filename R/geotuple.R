@@ -259,6 +259,40 @@ getThemes <- function(themes='*') {
 }
 
 #-----------------------------------------------------------------
+api_getpoints <- function(sw_lon, sw_lat, ne_lon, ne_lat, zoom=7, themes='z', key=0) {
+  #                                                                                                 Sacramento:   -121.552 38.543 -121.44 38.61
+  # curl http://localhost:9069/ocpu/library/geotuple/R/api_getpoints/json -H "Content-Type: application/json" -d '{"sw_lon":"-117.222", "sw_lat":"34.026", "ne_lon":"-117.166", "ne_lat":"34.062", "zoom":"11", "themes":"z", "key":"API_KEY"}'
+  # curl http://localhost:9069/ocpu/library/geotuple/R/api_getpoints/json -H "Content-Type: application/json" -d '{"sw_lon":"-117.222", "sw_lat":"34.026", "ne_lon":"-117.166", "ne_lat":"34.062", "zoom":"12", "themes":["landcov", "dist_mroad"], "key":"API_KEY"}'
+  #
+  df = NULL
+
+  # build dynamic query
+  cols <- paste(themes, collapse=',')
+  if (length(themes)>1) {
+    themesl <- paste(themes, collapse=' numeric, ')
+    themesl <- paste(themesl,"numeric")
+  } else {
+    themesl <- paste(themes,"numeric")
+  }
+  #print(themesl)
+  defs <- paste("AS (x float, y float,", themesl)
+  key <- paste("'", key,"'", sep = "")
+
+  # create a connection to the postgres database
+  con <- getPgCon()
+
+  # query for feature closest to lon/lat
+  tab <- "grid"
+  if (dbExistsTable(con, tab)) {
+    q <- paste("SELECT * FROM gt_api_getpoints(", sw_lon,",",sw_lat,",",ne_lon,",",ne_lat,",", zoom,",'{", cols,"}',",key,")", defs,");")
+    #print(q)
+    df <- dbGetQuery(con, q)
+  }
+  dbDisconnect(con)
+  return(df)
+}
+
+#-----------------------------------------------------------------
 api_getpoint <- function(lon, lat, themes='z', key=0) {
   #
   # curl http://localhost:9069/ocpu/library/geotuple/R/api_getpoint/json -H "Content-Type: application/json" -d '{"lon":"-117.198", "lat":"34.0402", "themes":"z", "key":"API_KEY"}'
@@ -266,7 +300,6 @@ api_getpoint <- function(lon, lat, themes='z', key=0) {
   # curl http://localhost:9069/ocpu/library/geotuple/R/api_getpoint/json -H "Content-Type: application/json" -d '{"lon":"-117.198", "lat":"34.0402", "themes":"*", "key":"API_KEY"}'
   #
   df = NULL
-  if (!isKeyValid(key)) return(df)
 
   # build dynamic query
   cols <- paste(themes, collapse=',')
@@ -353,19 +386,32 @@ api_getthemeprops <- function(theme) {
 
 #-----------------------------------------------------------------
 getKey <-function (x="") {
-  c("Your temporary API Key is: ")
+  return("Generating key...")  # the purpose is to just create a session
 }
 
 #-----------------------------------------------------------------
-isKeyValid <-function (key) {
- #  require(httr)
- #  server <- "http://localhost:9069/ocpu/tmp/"  # x013cd3fb3a
- #  serverUrl <- paste(server, sep="", key)
- #  print(serverUrl)
- #  x <- GET(serverUrl, timeout(3))
- #  if (x$status_code == 200) return(TRUE) else return(FALSE)
- # oops can't call itself ie curl+GET so hardcode path instead...
+addKey <- function(key="") {
+  #
+  df = NULL
 
+  # create a connection to the postgres database
+  con <- getPgCon()
+
+  if (isSession(key)) {
+    q <- paste("select gt_addkey('", key, "', '", GT_KEY, "');", sep = "")
+    #print(q)
+    x <- dbGetQuery(con, q)
+    if (!is.null(x)) {
+      df <- x
+    }
+  }
+  dbDisconnect(con)
+  return(df)
+}
+
+#-----------------------------------------------------------------
+isSession <-function (key="") {
+  # hardcoded path
   f <- paste("/tmp/ocpu-www-data/tmp_library/", sep="", key)
   #f <- "/usr/local"
   return((file.exists(f)))

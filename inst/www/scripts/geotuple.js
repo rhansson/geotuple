@@ -30,7 +30,6 @@ var G_hliteThemes = [];
 var G_hliteFilters = {};
 var G_session = null;
 var G_points = [];  // point features
-var G_crIsReversed = false;
 var center_barea = [[37.589, -122.144], 10];
 var center_lacnty = [[34.082, -118.223], 10];
 var center_bhills = [[34.0804, -118.4125], 13];
@@ -77,11 +76,7 @@ Theme.prototype.draw = function(points, map, markerLayer) {
   var theme = jQuery.extend({}, G_mapTheme)  // clone 
   if (this.style == "hot") {
     column = "Getis";    
-    colorRange = setColorRange("RdBu"); 
-    if (!G_crIsReversed) {
-      colorRange.reverse();   // Red-Blue -> Blue-Red for legend only     
-      G_crIsReversed = true;  // do this only once ... got to be a better way ...
-    }   
+    colorRange = setColorRange("_RdBu");  
     theme.units = "Z score"
     theme.min = stats.hotStats.min; theme.avg = stats.hotStats.avg; theme.max = stats.hotStats.max;
   } else {  // value
@@ -272,22 +267,41 @@ $(document).ready(function() {
     //console.log(itm)
     $("#msg").css("background-color","White");        // should be toggle
     if (itm == "apikey") {
-      var req = ocpu.call("getKey", {
+    
+      var req1 = ocpu.call("getKey", {
         x : ""
-      }, function(session) {  // retrieve the returned object async
-        session.getObject(function(data) {
-          var apikey = session.getKey();
-          //console.log(apikey)
-          $("#msg").text(data[0] + apikey);
-          $("#msg").css("background-color","Yellow");   // should be toggle
-        });     
-        req.fail(function(){
-          alert("Server error: " + req.responseText);
-        });
-        req.always(function(){
-          //$('#menu-itm').hide();
-        });
+      }, function(session1) {  // retrieve the returned object async
+        session1.getObject(function(data) {
+          var apikey = session1.getKey();
+          if (apikey.length > 0) { 
+            $("#msg").text(data[0]);  // default msg
+            $("#msg").css("background-color","Yellow");   // should be toggle
+            // chain calls
+            var req2 = ocpu.rpc("addKey", {
+              key : apikey
+            }, function(data) {
+              //console.log(data)
+              if (data.length > 0) {
+                if (data[0] = 1) {
+                  $("#msg").text("Your API Key is: " + apikey);
+                } else {
+                  $("#msg").text("Error generating the key!");
+                }
+              }
+            });
+            req2.fail(function() {
+              alert("Server error 2: " + req2.responseText);
+            });
+          } 
+        });   
+      }); 
+      req1.fail(function() {
+        alert("Server error: " + req1.responseText);
       });
+      req1.always(function() {
+        var nothing;
+      });
+    
     } else if (itm == "bookm-ba") {
       L_map.setView(center_barea[0], center_barea[1]);
       //refreshMap(null);
@@ -826,6 +840,10 @@ function setColorRange(color) {
     case "RdBu":
       retVal = colorbrewer.RdBu[9];
       break;
+    case "_RdBu":
+      var cb2 = jQuery.extend(true, {}, colorbrewer)  // deep clone
+      retVal = cb2.RdBu[9].reverse();
+      break;
     case "RdPu":
       retVal = colorbrewer.RdPu[9];
       break;
@@ -840,6 +858,10 @@ function setColorRange(color) {
       break;
     case "Spectral":
       retVal = colorbrewer.Spectral[9];
+      break;
+    case "_Spectral":
+      var cb2 = jQuery.extend(true, {}, colorbrewer)  // deep clone
+      retVal = cb2.Spectral[9].reverse();
       break;
     default:
       retVal = colorbrewer.Set3[12];
@@ -1000,7 +1022,7 @@ function runAnalysis(alztype) {
           G_alzResults[alztype] = r.concat(data);
         });
         req2.fail(function() {
-          alert("Server error: " + req3.responseText);
+          alert("Server error: " + req2.responseText);
         }); 
 
         if (plot) {  
@@ -1089,11 +1111,11 @@ function drawLegend(stats, colorRange, style, values) {
     .attr('y', function(d, i) {
       return i % 2 * rectH * 1.25;})
     .text(function(d) {return d;});
-
-      //$('#legend').css('visibility', 'hidden');  
-  } else {     
-    //$('#legend').css('visibility', 'visible'); 
+ 
+  } else {
+    //     
     // threshold is for map symbols - https://github.com/mbostock/d3/wiki/Quantitative-Scales#quantize-scales
+    //
     if (stats.type == "continuous") {
       var threshold = d3.scale.quantize()  
         .range(colorRange)

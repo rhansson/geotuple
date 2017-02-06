@@ -194,7 +194,7 @@ a.active:link {  /* after click */
 #themes {
   width: 100%;
   display: block;
-  max-height: 400px;  
+  max-height: 455px;  
   overflow-x: scroll;
   overflow-y: scroll;
   margin-bottom: 0;

@@ -2,7 +2,9 @@
   {"key":"z", 							"name":"Elevation", 							"color":"YlOrBr"},
   {"key":"dist_starb", 			"name":"Distance from Starbucks",	"color":"Spectral"},
   {"key":"pop_dens", 				"name":"Population Density", 			"color":"OrRd"},
-  {"key":"inc_percap",			"name":"Income per Capita",  			"color":"OrRd"},  
+  {"key":"inc_percap",			"name":"Income per Capita",  			"color":"OrRd"}, 
+  {"key":"race_white",			"name":"Race White",  						"color":"OrRd"},
   {"key":"dist_mroad", 			"name":"Distance from Major Roads",	"color":"Spectral"},
+  {"key":"calenviro", 			"name":"CalEnviroScreen",					"color":"_Spectral"},
   {"key":"landcov", 				"name":"Land Cover", 							"color":"Set3"}
 ]}
