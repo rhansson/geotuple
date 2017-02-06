@@ -14,7 +14,7 @@ It is the goal of this project to expand both the area and the number of themes 
 ```
 
 ### Data Layers
-The following data layers (themes) are provided as of Jan 1, 2017:
+The following data layers (themes) are provided as of Feb 6, 2017:
 
 Theme | Title | Description | Time Period | Units | Source | Credit
 ----- | ----- | ----------- | ----------- | ----- | ------ | ------
