@@ -20,26 +20,24 @@ api_getthemes | Available themes
 
 api_getthemeprops | Properties for the specified theme
 --------- | -------
-**Arguments | Meaning**
 theme | Name of theme
 
 api_getpoint | Data values for the specified theme(s) 
 --------- | -------
-**Arguments | Meaning**
 longitude | x
 latitude  | y
-theme1, .. n | Name of theme(s) 
+theme1 .. n | Name of theme(s) 
 
 api_getpoints | Data values for the specified theme(s) within extent at zoom level 
 --------- | -------
-**Arguments | Meaning**
 SW_longitude | xmin
 SW_latitude | ymin
 NE_longitude| xmax
 NE_latitude | ymax
 zoom | [zoom level](http://wiki.openstreetmap.org/wiki/Zoom_levels){:target="_blank"}
-theme1, .. n | Name of theme(s)
+theme1 .. n | Name of theme(s)
 API_KEY | Your API Key (see below)
+
 _**Max 1000 points/request**_
 
 Example: [Download from R](https://gist.github.com/rhansson/1efb9a1b9bec053aa19d71c67f0e27a3){:target="_blank"}
