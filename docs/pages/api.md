@@ -14,21 +14,21 @@ It is the goal of this project to add and improve the capabilities over time.
 ### API Endpoints
 The following methods are available:
 
-api_getthemes     | Available themes                                                .
+api_getthemes   : | Available themes
 ----------------- | -------
-none              | n/a
+Argument          | Meaning
 
-api_getthemeprops | Properties for the specified theme                              .
+api_getthemeprops: | Properties for the specified theme
 ----------------- | -------
 theme             | Name of theme
 
-api_getpoint      | Data values for the specified theme(s)                          .
+api_getpoint    : | Data values for the specified theme(s)
 ----------------- | -------
 longitude         | x
 latitude          | y
 theme1 .. n       | Name of theme(s) 
 
-api_getpoints     | Data values for the specified theme(s) within extent at zoom level 
+api_getpoints   : | Data values for the specified theme(s) within extent at zoom level 
 ----------------- | -------
 SW_longitude      | xmin
 SW_latitude       | ymin
