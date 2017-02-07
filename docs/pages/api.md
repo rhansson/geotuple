@@ -12,25 +12,24 @@ It is the goal of this project to add and improve the capabilities over time.
 ```
 
 ### API Endpoints
-The following calls area available:
+The following methods are available:
 
-Method            |  Returns
------- |  -------
 api_getthemes     | Available themes
------- |  -------
+------            | -------
+- | -
 
 api_getthemeprops | Properties for the specified theme
---------- | -------
+---------         | -------
 theme | Name of theme
 
 api_getpoint      | Data values for the specified theme(s) 
---------- | -------
+---------         | -------
 longitude | x
 latitude  | y
 theme1 .. n | Name of theme(s) 
 
 api_getpoints     | Data values for the specified theme(s) within extent at zoom level 
---------- | -------
+---------         | -------
 SW_longitude | xmin
 SW_latitude | ymin
 NE_longitude| xmax
@@ -41,7 +40,7 @@ API_KEY | Your API Key (see below)
 
 _**Max 1000 points/request**_
 
-Example: [Download from R](https://gist.github.com/rhansson/1efb9a1b9bec053aa19d71c67f0e27a3){:target="_blank"}
+Example: [Download and process with R](https://gist.github.com/rhansson/1efb9a1b9bec053aa19d71c67f0e27a3){:target="_blank"}
 
 
 ##### _**Get an API Key**_
