@@ -14,13 +14,35 @@ It is the goal of this project to add and improve the capabilities over time.
 ### API Endpoints
 The following calls area available:
 
-Method | Arguments | Returns
------- | --------- | -------
-api_getthemes | | Available themes
-api_getthemeprops | theme | Properties for the specified theme
-api_getpoint | longitude, latitude, theme1 .. n | Data values for the specified theme(s) and distance* near location
-api_getpoints | SW_longitude, SW_latitude, NE_longitude, NE_latitude, zoom, theme1 .. n, API_KEY | Data values for the specified theme(s) within extent at zoom level
- | |  * Distance to the database point closest to the specified location
+Method |  Returns
+------ |  -------
+api_getthemes | Available themes
+
+api_getthemeprops | Properties for the specified theme
+Arguments | Meaning
+--------- | -------
+theme | Name of theme
+
+api_getpoint | Data values for the specified theme(s)  
+Arguments | Meaning
+--------- | -------
+longitude | x
+latitude  | y
+theme1, .. n | Name of theme(s) 
+
+api_getpoints | Data values for the specified theme(s) within extent at zoom level 
+Arguments | Meaning
+--------- | -------
+SW_longitude | xmin
+SW_latitude | ymin
+NE_longitude| xmax
+NE_latitude | ymax
+zoom | [zoom level](http://wiki.openstreetmap.org/wiki/Zoom_levels){:target="_blank"}
+theme1, .. n | Name of theme(s)
+API_KEY | Your API Key (see below)
+**Max 1000 points/request**
+
+Example: [Download from R](https://gist.github.com/rhansson/1efb9a1b9bec053aa19d71c67f0e27a3){:target="_blank"}
  
 ##### _**Get an API Key**_
 
@@ -109,17 +131,17 @@ curl http://geotuple.com/ocpu/user/rolandhhansson/library/geotuple/R/api_getpoin
 ```
 
 ```
-# Data for themes "z" and "inc_percap" near location
+# Data for themes "calenviro" and "inc_percap" near location
 # "dist" is the distance to the database point (returned) closest to the specified location
 curl http://geotuple.com/ocpu/user/rolandhhansson/library/geotuple/R/api_getpoint/json \
  -H "Content-Type: application/json" \
- -d '{"lon":"-121.494", "lat":"38.577", "themes":["z", "inc_percap"]}'
+ -d '{"lon":"-121.494", "lat":"38.577", "themes":["calenviro", "inc_percap"]}'
  #
  # returns:
  [
   {
     "dist": 103,
-    "z": 25,
+    "calenviro": 51,
     "inc_percap": 30019
   }
 ]
