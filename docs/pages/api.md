@@ -18,22 +18,23 @@ Method | Arguments | Returns
 ------ | --------- | -------
 api_getthemes | | Available themes
 api_getthemeprops | theme | Properties for the specified theme
-api_getpoint | longitude, latitude, theme1 .. n, API_KEY | Data values* for the specified theme(s)
+api_getpoint | longitude, latitude, theme1 .. n | Data values* for the specified theme(s)
+api_getpoints | SW_longitude, SW_latitude, NE_longitude, NE_latitude, zoom, theme1 .. n, API_KEY | Data values* for the specified theme(s)
  | |  * a single point closest to the specified location
  
-##### _**Get a temporary API Key**_
+##### _**Get an API Key**_
 
 1. Launch the [GeoTuple app](http://geotuple.com){:target="_blank"}
 2. Select "Get an API Key" from the menu in the top right of the window
   ![](get_api_key.png)
 
-3. Copy the code displayed at the top left of the window (valid for a maximum of 24h)
+3. Copy the code displayed at the top left of the window
   ![](copy_api_key.png)
 
-> _**Please limit your requests to < 3/min**_
+> _**Please limit your requests to < 5/min**_
 
 #### Examples
-Results are returned within [ ]. If invalid request or an error occurs an empty result is returned.
+Results are returned as a JSON array []. If invalid request or an error occurs an empty result is returned.
 _Notice that curl is used for illustration only, any HTTP client will do._
 
 
@@ -67,6 +68,7 @@ curl -X POST http://geotuple.com/ocpu/user/rolandhhansson/library/geotuple/R/api
     "name": "dist_starb",
     "descr": "Distance from Starbucks"
   }
+  { ... }
 ]
 ```
 
@@ -91,7 +93,7 @@ curl http://geotuple.com/ocpu/user/rolandhhansson/library/geotuple/R/api_getthem
 ```
 
 ```
-# Data for theme "z"
+# Data for theme "z" near location
 # Replace YOUR_API_KEY with the code copied above
 # "dist" is the distance to the database point (returned) closest to the specified location
 curl http://geotuple.com/ocpu/user/rolandhhansson/library/geotuple/R/api_getpoint/json \
@@ -108,7 +110,7 @@ curl http://geotuple.com/ocpu/user/rolandhhansson/library/geotuple/R/api_getpoin
 ```
 
 ```
-# Data for themes "z" and "inc_percap"
+# Data for themes "z" and "inc_percap" near location
 # Replace YOUR_API_KEY
 # "dist" is the distance to the database point (returned) closest to the specified location
 curl http://geotuple.com/ocpu/user/rolandhhansson/library/geotuple/R/api_getpoint/json \
@@ -127,7 +129,7 @@ curl http://geotuple.com/ocpu/user/rolandhhansson/library/geotuple/R/api_getpoin
 ```
 
 ```
-# Data for all themes
+# Data for all themes near location
 # Replace YOUR_API_KEY 
 # "dist" is the distance to the database point (returned) closest to the specified location
 curl http://geotuple.com/ocpu/user/rolandhhansson/library/geotuple/R/api_getpoint/json \
@@ -144,7 +146,71 @@ curl http://geotuple.com/ocpu/user/rolandhhansson/library/geotuple/R/api_getpoin
     "inc_percap": 30019,
     "z": 25,
     "dist_starb": 342
+    ...
   }
+]
+```
+
+```
+# Data for theme "z" within extent at zoom level 10
+# Replace YOUR_API_KEY 
+curl http://geotuple.com/ocpu/user/rolandhhansson/library/geotuple/R/api_getpoints/json 
+-H "Content-Type: application/json" 
+-d '{"sw_lon":"-121.552", "sw_lat":"38.543", "ne_lon":"-121.44", "ne_lat":"38.61", "zoom":"10", "themes":["landcov", "dist_mroad"], "key":"API_KEY"}'
+ #
+ # returns:
+ [
+  {
+    "x": -121.5152,
+    "y": 38.5698,
+    "z": 7
+  },
+  {
+    "x": -121.5147,
+    "y": 38.6058,
+    "z": 6
+  },
+  {
+    "x": -121.4693,
+    "y": 38.5698,
+    "z": 10
+  },
+  {
+    "x": -121.4688,
+    "y": 38.6058,
+    "z": 9
+  }
+]
+```
+
+```
+# Data for themes "landcov" and "dist__mroad" within extent at zoom level 11
+# Replace YOUR_API_KEY 
+curl http://geotuple.com/ocpu/user/rolandhhansson/library/geotuple/R/api_getpoints/json 
+-H "Content-Type: application/json" 
+-d '{"sw_lon":"-121.552", "sw_lat":"38.543", "ne_lon":"-121.44", "ne_lat":"38.61", "zoom":"10", "themes":["landcov", "dist_mroad"], "key":"API_KEY"}'
+ #
+ # returns:
+ [
+  {
+    "x": -121.5377,
+    "y": 38.6058,
+    "landcov": 23,
+    "dist_mroad": 350
+  },
+  {
+    "x": -121.5379,
+    "y": 38.5878,
+    "landcov": 23,
+    "dist_mroad": 327
+  },
+  {
+    "x": -121.492,
+    "y": 38.5878,
+    "landcov": 23,
+    "dist_mroad": 976
+  },
+  { ... }
 ]
 ```
 
