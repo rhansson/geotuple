@@ -18,9 +18,9 @@ Method | Arguments | Returns
 ------ | --------- | -------
 api_getthemes | | Available themes
 api_getthemeprops | theme | Properties for the specified theme
-api_getpoint | longitude, latitude, theme1 .. n | Data values* for the specified theme(s)
-api_getpoints | SW_longitude, SW_latitude, NE_longitude, NE_latitude, zoom, theme1 .. n, API_KEY | Data values* for the specified theme(s)
- | |  * a single point closest to the specified location
+api_getpoint | longitude, latitude, theme1 .. n | Data values for the specified theme(s) and distance* near location
+api_getpoints | SW_longitude, SW_latitude, NE_longitude, NE_latitude, zoom, theme1 .. n, API_KEY | Data values for the specified theme(s) within extent at zoom level
+ | |  * Distance to the database point closest to the specified location
  
 ##### _**Get an API Key**_
 
