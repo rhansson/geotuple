@@ -94,11 +94,10 @@ curl http://geotuple.com/ocpu/user/rolandhhansson/library/geotuple/R/api_getthem
 
 ```
 # Data for theme "z" near location
-# Replace YOUR_API_KEY with the code copied above
 # "dist" is the distance to the database point (returned) closest to the specified location
 curl http://geotuple.com/ocpu/user/rolandhhansson/library/geotuple/R/api_getpoint/json \
  -H "Content-Type: application/json" \
- -d '{"lon":"-121.494", "lat":"38.577", "themes":"z", "key":"YOUR_API_KEY"}'
+ -d '{"lon":"-121.494", "lat":"38.577", "themes":"z"}'
  #
  # returns:
  [
@@ -111,11 +110,10 @@ curl http://geotuple.com/ocpu/user/rolandhhansson/library/geotuple/R/api_getpoin
 
 ```
 # Data for themes "z" and "inc_percap" near location
-# Replace YOUR_API_KEY
 # "dist" is the distance to the database point (returned) closest to the specified location
 curl http://geotuple.com/ocpu/user/rolandhhansson/library/geotuple/R/api_getpoint/json \
  -H "Content-Type: application/json" \
- -d '{"lon":"-121.494", "lat":"38.577", "themes":["z", "inc_percap"], "key":"YOUR_API_KEY"}'
+ -d '{"lon":"-121.494", "lat":"38.577", "themes":["z", "inc_percap"]}'
  #
  # returns:
  [
@@ -130,11 +128,10 @@ curl http://geotuple.com/ocpu/user/rolandhhansson/library/geotuple/R/api_getpoin
 
 ```
 # Data for all themes near location
-# Replace YOUR_API_KEY 
 # "dist" is the distance to the database point (returned) closest to the specified location
 curl http://geotuple.com/ocpu/user/rolandhhansson/library/geotuple/R/api_getpoint/json \
  -H "Content-Type: application/json" \
- -d '{"lon":"-121.494", "lat":"38.577", "themes":"*", "key":"YOUR_API_KEY"}'
+ -d '{"lon":"-121.494", "lat":"38.577", "themes":"*"}'
  #
  # returns:
  [
@@ -154,8 +151,8 @@ curl http://geotuple.com/ocpu/user/rolandhhansson/library/geotuple/R/api_getpoin
 ```
 # Data for theme "z" within extent at zoom level 10
 # Replace YOUR_API_KEY 
-curl http://geotuple.com/ocpu/user/rolandhhansson/library/geotuple/R/api_getpoints/json 
--H "Content-Type: application/json" 
+curl http://geotuple.com/ocpu/user/rolandhhansson/library/geotuple/R/api_getpoints/json \
+-H "Content-Type: application/json" \
 -d '{"sw_lon":"-121.552", "sw_lat":"38.543", "ne_lon":"-121.44", "ne_lat":"38.61", "zoom":"10", "themes":["landcov", "dist_mroad"], "key":"API_KEY"}'
  #
  # returns:
@@ -186,9 +183,9 @@ curl http://geotuple.com/ocpu/user/rolandhhansson/library/geotuple/R/api_getpoin
 ```
 # Data for themes "landcov" and "dist__mroad" within extent at zoom level 11
 # Replace YOUR_API_KEY 
-curl http://geotuple.com/ocpu/user/rolandhhansson/library/geotuple/R/api_getpoints/json 
--H "Content-Type: application/json" 
--d '{"sw_lon":"-121.552", "sw_lat":"38.543", "ne_lon":"-121.44", "ne_lat":"38.61", "zoom":"10", "themes":["landcov", "dist_mroad"], "key":"API_KEY"}'
+curl http://geotuple.com/ocpu/user/rolandhhansson/library/geotuple/R/api_getpoints/json \
+-H "Content-Type: application/json" \
+-d '{"sw_lon":"-121.552", "sw_lat":"38.543", "ne_lon":"-121.44", "ne_lat":"38.61", "zoom":"11", "themes":["landcov", "dist_mroad"], "key":"API_KEY"}'
  #
  # returns:
  [
