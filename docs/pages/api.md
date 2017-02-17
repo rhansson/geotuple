@@ -59,7 +59,7 @@ _Notice that curl is used for illustration only, any HTTP client will do._
 
 
 ```
-# Available themes
+# **Available themes**
 curl -X POST http://geotuple.com/ocpu/user/rolandhhansson/library/geotuple/R/api_getthemes/json -H "Content-Type: application/json"
 #
 # returns:
@@ -93,7 +93,7 @@ curl -X POST http://geotuple.com/ocpu/user/rolandhhansson/library/geotuple/R/api
 ```
 
 ```
-# Properties for theme "z"
+# **Properties for theme "z"**
 curl http://geotuple.com/ocpu/user/rolandhhansson/library/geotuple/R/api_getthemeprops/json \
  -H "Content-Type: application/json" \
  -d '{"theme":"z"}'
@@ -202,7 +202,7 @@ curl http://geotuple.com/ocpu/user/rolandhhansson/library/geotuple/R/api_getpoin
 
 ```
 # Data for themes "landcov" and "dist__mroad" within extent at zoom level 11
-# Replace YOUR_API_KEY 
+# Replace with _YOUR_ API_KEY 
 curl http://geotuple.com/ocpu/user/rolandhhansson/library/geotuple/R/api_getpoints/json \
 -H "Content-Type: application/json" \
 -d '{"sw_lon":"-121.552", "sw_lat":"38.543", "ne_lon":"-121.44", "ne_lat":"38.61", "zoom":"11", "themes":["landcov", "dist_mroad"], "key":"API_KEY"}'
