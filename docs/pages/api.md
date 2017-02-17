@@ -24,16 +24,16 @@ theme             | Name of theme
 
 api_getpoint :    | Data values for the specified theme(s) 
 ----------------- | -------
-longitude         | x
-latitude          | y
+lon               | longitude (x)
+lat               | latitude (y)
 theme1 .. n       | Name of theme(s) 
 
 api_getpoints :   | Data values for the specified theme(s) within extent at zoom level 
 ----------------- | -------
-SW_longitude      | xmin
-SW_latitude       | ymin
-NE_longitude      | xmax
-NE_latitude       | ymax
+SW_lon            | longitude (xmin)
+SW_lat            | latitude (ymin)
+NE_lon            | longitude (xmax)
+NE_lat            | latitude (ymax)
 zoom              | [zoom level](http://wiki.openstreetmap.org/wiki/Zoom_levels){:target="_blank"}
 theme1 .. n       | Name of theme(s)
 API_KEY           | Your API Key (see below)
@@ -59,7 +59,7 @@ _Notice that curl is used for illustration only, any HTTP client will do._
 
 
 ```
-# **Available themes**
+# Available themes
 curl -X POST http://geotuple.com/ocpu/user/rolandhhansson/library/geotuple/R/api_getthemes/json -H "Content-Type: application/json"
 #
 # returns:
@@ -93,7 +93,7 @@ curl -X POST http://geotuple.com/ocpu/user/rolandhhansson/library/geotuple/R/api
 ```
 
 ```
-# **Properties for theme "z"**
+# Properties for theme "z"
 curl http://geotuple.com/ocpu/user/rolandhhansson/library/geotuple/R/api_getthemeprops/json \
  -H "Content-Type: application/json" \
  -d '{"theme":"z"}'
@@ -170,7 +170,7 @@ curl http://geotuple.com/ocpu/user/rolandhhansson/library/geotuple/R/api_getpoin
 
 ```
 # Data for theme "z" within extent at zoom level 10
-# Replace YOUR_API_KEY 
+# Replace with YOUR API_KEY 
 curl http://geotuple.com/ocpu/user/rolandhhansson/library/geotuple/R/api_getpoints/json \
 -H "Content-Type: application/json" \
 -d '{"sw_lon":"-121.552", "sw_lat":"38.543", "ne_lon":"-121.44", "ne_lat":"38.61", "zoom":"10", "themes":["landcov", "dist_mroad"], "key":"API_KEY"}'
@@ -202,7 +202,7 @@ curl http://geotuple.com/ocpu/user/rolandhhansson/library/geotuple/R/api_getpoin
 
 ```
 # Data for themes "landcov" and "dist__mroad" within extent at zoom level 11
-# Replace with _YOUR_ API_KEY 
+# Replace with YOUR API_KEY 
 curl http://geotuple.com/ocpu/user/rolandhhansson/library/geotuple/R/api_getpoints/json \
 -H "Content-Type: application/json" \
 -d '{"sw_lon":"-121.552", "sw_lat":"38.543", "ne_lon":"-121.44", "ne_lat":"38.61", "zoom":"11", "themes":["landcov", "dist_mroad"], "key":"API_KEY"}'
