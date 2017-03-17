@@ -14,9 +14,10 @@ It is the goal of this project to add and improve the capabilities over time.
 ### API Endpoints
 The following methods are available:
 
+__Argument__      | __Meaning__
 api_getthemes :   | Available themes 
 ----------------- | -------
-_Argument_        | _Meaning_
+                  | Name of themes
 
 api_getthemeprops : | Properties for the specified theme 
 ----------------- | -------
@@ -173,7 +174,7 @@ curl http://geotuple.com/ocpu/user/rolandhhansson/library/geotuple/R/api_getpoin
 # Replace with YOUR API_KEY 
 curl http://geotuple.com/ocpu/user/rolandhhansson/library/geotuple/R/api_getpoints/json \
 -H "Content-Type: application/json" \
--d '{"sw_lon":"-121.552", "sw_lat":"38.543", "ne_lon":"-121.44", "ne_lat":"38.61", "zoom":"10", "themes":["landcov", "dist_mroad"], "key":"API_KEY"}'
+-d '{"sw_lon":"-121.552", "sw_lat":"38.543", "ne_lon":"-121.44", "ne_lat":"38.61", "zoom":"10", "themes":"z", "key":"API_KEY"}'
  #
  # returns:
  [
