@@ -14,7 +14,8 @@ It is the goal of this project to add and improve the capabilities over time.
 ### API Endpoints
 The following methods are available:
 
-__Argument__      | __Meaning__
+**Argument**      | **Meaning**
+
 api_getthemes :   | Available themes 
 ----------------- | -------
                   | Name of themes
