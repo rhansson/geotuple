@@ -834,6 +834,16 @@ function setColorRange(color) {
     case "Greens":
       retVal = colorbrewer.Greens[9];
       break;
+    case "Reds":
+      retVal = colorbrewer.Reds[9];
+      break;
+    case "Oranges":
+      retVal = colorbrewer.Oranges[9];
+      break;
+    case "_Oranges":
+      var cb2 = jQuery.extend(true, {}, colorbrewer)  
+      retVal = cb2.Oranges[9].reverse();
+      break;
     case "OrRd":
       retVal = colorbrewer.OrRd[9];
       break;
@@ -844,23 +854,21 @@ function setColorRange(color) {
       var cb2 = jQuery.extend(true, {}, colorbrewer)  // deep clone
       retVal = cb2.RdBu[9].reverse();
       break;
-    case "RdPu":
-      retVal = colorbrewer.RdPu[9];
-      break;
     case "YlOrBr":
       retVal = colorbrewer.YlOrBr[9];
       break;
-    case "Reds":
-      retVal = colorbrewer.Reds[9];
-      break;
     case "RdYlGn":
       retVal = colorbrewer.RdYlGn[9];
+      break;
+    case "_RdYlGn":
+      var cb2 = jQuery.extend(true, {}, colorbrewer)  
+      retVal = cb2.RdYlGn[9].reverse();
       break;
     case "Spectral":
       retVal = colorbrewer.Spectral[9];
       break;
     case "_Spectral":
-      var cb2 = jQuery.extend(true, {}, colorbrewer)  // deep clone
+      var cb2 = jQuery.extend(true, {}, colorbrewer)  
       retVal = cb2.Spectral[9].reverse();
       break;
     default:
