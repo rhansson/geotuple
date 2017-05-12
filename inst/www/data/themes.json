@@ -1,11 +1,11 @@
 {"themes":[
   {"key":"z", 							"name":"Elevation", 							"color":"YlOrBr"},
-  {"key":"dist_starb", 			"name":"Distance from Starbucks",	"color":"_Oranges"},
+  {"key":"dist_starb", 			"name":"Distance from Starbucks",	"color":"Spectral"},
   {"key":"pop_dens", 				"name":"Population Density", 			"color":"OrRd"},
   {"key":"inc_percap",			"name":"Income per Capita",  			"color":"OrRd"}, 
   {"key":"race_white",			"name":"Race White",  						"color":"OrRd"},
-  {"key":"vote_trump", 			"name":"Election President Trump", "color":"_RdBu"},
+  {"key":"vote_trump", 			"name":"Voted for Trump",         "color":"_RdBu"},
   {"key":"calenviro", 			"name":"CalEnviroScreen",					"color":"_RdYlGn"},
-  {"key":"dist_mroad", 			"name":"Distance from Major Roads",	"color":"_Oranges"},
+  {"key":"dist_mroad", 			"name":"Distance from Major Roads",	"color":"Spectral"},
   {"key":"landcov", 				"name":"Land Cover", 							"color":"Set3"}
 ]}
