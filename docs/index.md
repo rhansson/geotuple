@@ -25,6 +25,6 @@ GeoTuple is Open Source Software (available on [GitHub](https://github.com/rhans
 - D3
 - Leaflet
 
-also: GDAL/OGR, jQuery, Skeleton.css, Linux (Ubuntu), Apache and OpenStreetMap. 
+also: GDAL/OGR, jQuery, Skeleton.css, ColorBrewer, Linux (Ubuntu), Apache and OpenStreetMap. 
 
 **_Thank You!_**
