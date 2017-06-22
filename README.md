@@ -7,3 +7,6 @@ For more info:
 
 - [geotuple.org](http://rhansson.github.io/geotuple/)
 - [Google Group](https://groups.google.com/forum/#!forum/geotuple)
+
+## License
+GeoTuple is licensed under the [GNU GENERAL PUBLIC LICENSE Version 3](https://www.gnu.org/licenses/gpl.html).
