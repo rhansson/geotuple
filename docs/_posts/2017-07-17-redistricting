@@ -10,7 +10,7 @@ For example, it can quantify the relationship between voting and demographic var
 The map below suggests a strong correlation with voting for Trump and: population density (city vs rural) and race, but less so for income.
 ![screen_voting]({{ site.url }}/assets/themes/twitter/bootstrap/img/trump_corrsocal.png)
 
-One could imagine an app that lets the user interactively adjust district boundaries all the while giving instant feeback for relevant statistics!
+One could imagine an app that lets the user interactively adjust district boundaries all the while giving instant feedback for relevant statistics!
 
 ###Note###
 In creating the underlying data layer: [California voting precincts in TopoJSON format](https://github.com/rhansson/California_2016_Election_precinct_data){:target="_blank"},
