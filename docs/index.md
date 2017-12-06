@@ -15,6 +15,7 @@ It lets you visualize database themes as layers on a map and perform exploratory
 #### Background
 1. [Bye bye GIS - Hello Geospatial information analytics (GiX)](https://www.linkedin.com/pulse/bye-gis-hello-geospatial-information-analytics-gix-roland-hansson?trk=pulse_spock-articles){:target="_blank"}
 2. [GeoTuple: towards an Open Multiscale GeoAnalytics platform](https://www.linkedin.com/pulse/geotuple-towards-open-multiscale-geoanalytics-platform-roland-hansson?trk=pulse_spock-articles){:target="_blank"}
+3. [Presentation at FOSS4G 2017 (video)](https://vimeo.com/245261561){:target="_blank"}
 
 ### Credits
 GeoTuple is Open Source Software (available on [GitHub](https://github.com/rhansson/geotuple){:target="_blank"}) and is built on the shoulders of a stack of other OSS, most notably: 
