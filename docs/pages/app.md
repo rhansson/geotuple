@@ -13,8 +13,8 @@ It is the goal of this project to add and improve the capabilities over time.
 ```
 
 #### Tutorial
-Watch a 3min [YouTube video](https://www.youtube.com/watch?v=28q8NEw2cM8&feature=youtu.be){:target="_blank"}
+Watch a 3min [YouTube video](https://youtu.be/A-Vkq8K89v4){:target="_blank"}
 
 ### OpenGIX
 [OpenGIX](http://siteloc.opengix.com){:target="_blank"} is another example of an app built on the GeoTuple concept. Here the focus is on site location using multi-criteria analysis.
-Watch a 1min [YouTube video](https://www.youtube.com/watch?v=ZD6r1eFwgYg&feature=youtu.be){:target="_blank"}
+Watch a 1min [YouTube video](https://youtu.be/hHuGgAEcfKg){:target="_blank"}
